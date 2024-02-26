@@ -34,9 +34,9 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $office->name }}</td>
                     <td>{{ $office->address }}</td>
-                    <td>{{ $office->colleagues_count }}</td> <!-- Display the count of colleagues -->
+                    <td>{{ $office->colleagues_count }}</td>
                     <td>
-                        <button class="view btn btn-sm btn-primary" data-id="{{ $office->id }}">View</button>
+                        <a href="{{ route('offices.view', $office->id) }}" class="btn btn-sm btn-primary">View</a>
                         <button class="edit btn btn-sm btn-info" data-id="{{ $office->id }}">Edit</button>
                         <button class="delete btn btn-sm btn-danger" data-id="{{ $office->id }}">Delete</button>
                     </td>

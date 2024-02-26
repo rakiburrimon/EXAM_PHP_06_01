@@ -18,5 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route to display the office list
+// Route to display the index page for offices
 Route::get('/offices', [OfficeController::class, 'index'])->name('offices.index');
+
+// Route to view a specific office
+Route::get('/offices/{id}', [OfficeController::class, 'view'])->name('offices.view');
+
+// Route to get list of colleague
+Route::get('/offices/{office}/colleagues', [OfficeController::class, 'getColleagues'])->name('offices.colleagues');
