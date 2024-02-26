@@ -37,7 +37,7 @@
                     <td>{{ $office->colleagues_count }}</td>
                     <td>
                         <a href="{{ route('offices.view', $office->id) }}" class="btn btn-sm btn-primary">View</a>
-                        <button class="edit btn btn-sm btn-info" data-id="{{ $office->id }}">Edit</button>
+                        <a href="{{ route('offices.edit', $office->id) }}" class="btn btn-sm btn-info">Edit</a>
                         <button class="delete btn btn-sm btn-danger" data-id="{{ $office->id }}">Delete</button>
                     </td>
                 </tr>
@@ -52,6 +52,28 @@
 <script>
     $(document).ready(function() {
         $('#offices-table').DataTable();
+
+        // Handle click event on delete button
+        $('.delete').click(function() {
+            var officeId = $(this).data('id');
+            if (confirm("Are you sure you want to delete this office?")) {
+                $.ajax({
+                    url: '/offices/delete/' + officeId, // Change the URL as per your route
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // Reload the page after successful deletion
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        console.error(error);
+                    }
+                });
+            }
+        });
     });
 </script>
 
